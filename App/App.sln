@@ -1,0 +1,41 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 25.0.1706.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Html", "Html", "{043E242E-010A-444A-AE55-BBD028EC10BB}"
+	ProjectSection(SolutionItems) = preProject
+		index.html = index.html
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "img", "img", "{C1A0134B-568A-441C-81A4-B9681101C43B}"
+	ProjectSection(SolutionItems) = preProject
+		img\01.jpg = img\01.jpg
+		img\02.jpg = img\02.jpg
+		img\03.jpg = img\03.jpg
+		img\04.jpg = img\04.jpg
+		img\05.jpg = img\05.jpg
+		img\06.jpg = img\06.jpg
+		img\07.jpg = img\07.jpg
+		img\08.jpg = img\08.jpg
+		img\09.jpg = img\09.jpg
+		img\10.jpg = img\10.jpg
+		img\11.jpg = img\11.jpg
+		img\12.jpg = img\12.jpg
+		img\13.jpg = img\13.jpg
+		img\14.jpg = img\14.jpg
+		img\15.jpg = img\15.jpg
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B9DB2BF4-B9BA-47BC-A8B6-9FAA9A17AB1E}
+	EndGlobalSection
+EndGlobal
