@@ -4,16 +4,159 @@
     <meta charset="utf-8" />
     <title>Image Gallery</title>
 
+    <style>
+        .img-fluid:hover{
+            cursor:pointer;
+        }
+
+        .img-fluid {
+            box-shadow: 0px 0px 10px 1px #575652;
+        }
+
+        /*Show image 1 when page size is too small*/
+        @media (max-width: 576px) {
+            body {
+                background-image: url('img/01.jpg');
+            }
+
+            .img-fluid {
+                display: none;
+            }
+        }
+    </style>
+
 
     <!--Bootstrapt CSS link-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 </head>
-<body>
+<body class="bg-danger-subtle">
+
+    <div class="navigation bg-secondary px-1 sticky-top">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">Gallery</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Link</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Dropdown
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+                        </li>
+                    </ul>
+                    <form class="d-flex" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+                        <button class="btn btn-outline-light" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+
+    <div class="container">
+        <h1 class="text-center pt-2">Image Gallery</h1>
+        <div class="row g-2 mt-3" id="imgContainerDiv">
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Image</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img class="img-fluid" id="imageModalSrc" />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 
-    <!-- JS link -->
+    <script>//Here, the HTML page is expected to respond to the request.
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const images = ['img/01.jpg', 'img/02.jpg', 'img/03.jpg', 'img/04.jpg', 'img/05.jpg', 'img/06.jpg', 'img/07.jpg', 'img/08.jpg', 'img/09.jpg', 'img/10.jpg', 'img/11.jpg', 'img/12.jpg', 'img/13.jpg', 'img/14.jpg', 'img/15.jpg'];
+
+            const imgContainerDiv = document.getElementById("imgContainerDiv");
+
+            //A modal has been created for the relevant ID.
+            const imgModalId = new bootstrap.Modal(document.getElementById("imageModal"));
+
+            const imgModalSrc = document.getElementById("imageModalSrc");
+
+            //This function creates the necessary elements for each image in the images array.
+            images.forEach((image) => {
+
+                const divElement = document.createElement("div");
+
+                const imgElement = document.createElement("img");
+
+                //The images to be displayed are adjusted via className according to the page size.
+                divElement.className = "col col-sm-6 col-md-4 col-lg-3";
+
+                imgElement.className = "img-fluid img-thumbnail";
+                imgElement.src = image;
+
+                //click event listener added ot imageElement for eachy image
+                imgElement.addEventListener("click", function () {
+                    imgModalSrc.src = image; //show relevant image in modal
+                    imgModalId.show(); //Show modal by clicking
+                });
+
+                //Adding child elements
+                divElement.appendChild(imgElement);
+
+                imgContainerDiv.appendChild(divElement);
+            });
+
+        });</script>
+
+
+    <!--Check whether the navbar is open or closed.-->
+
+    <script>document.addEventListener('click', function (event) {
+            const navbarCollapse = document.querySelector('.navbar-collapse');
+
+            //If the navbar is open and the clicked area is not the navbar
+            if (navbarCollapse.classList.contains('show') && !navbarCollapse.contains(event.target) && !event.target.closest('.navbar-toggler')) {
+                //Find the Bootstrap collapse instance and close it
+                const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse);
+                if (bsCollapse) {
+                    bsCollapse.hide();
+                }
+            }
+        });</script>
+
+    <!--Bootstrapt JS link -->
+
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js" integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y" crossorigin="anonymous"></script>
+
 </body>
 </html>
